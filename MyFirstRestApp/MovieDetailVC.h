@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  MovieDetailVC.h
 //  MyFirstRestApp
 //
 //  Created by Ta Minh Quan on 04/02/2017.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface MovieDetailVC : UITableViewController
 
+@property (strong,nonatomic) NSDictionary *movieDic;
 
 @end
-

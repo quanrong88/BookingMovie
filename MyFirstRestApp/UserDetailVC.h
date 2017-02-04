@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  UserDetailVC.h
 //  MyFirstRestApp
 //
 //  Created by Ta Minh Quan on 04/02/2017.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface UserDetailVC : UITableViewController
 
+@property(strong, nonatomic) NSDictionary *userDic;
 
 @end
-
