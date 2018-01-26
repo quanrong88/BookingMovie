@@ -1,5 +1,5 @@
-# DummyMap-IOS
-IOS application for DummyMap project written in Objective-C
+# Booking Movie APP
+IOS application for demo microservices project written in Objective-C
 
 ### Installing
 
