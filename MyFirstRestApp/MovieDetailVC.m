@@ -42,7 +42,7 @@
     __weak MovieDetailVC *weakSelf = self;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     if (self.movieDic) {
-        NSString *URLString = [NSString stringWithFormat:@"%@%@", @"http://localhost:81/api/movies/" , self.movieDic[@"id"]];
+        NSString *URLString = [NSString stringWithFormat:@"%@%@", @"http://localhost:30/api/movies/" , self.movieDic[@"id"]];
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         param[@"title"] = self.titleTxt.text;
         param[@"director"] = self.directorTxt.text;
@@ -50,10 +50,10 @@
         [manager PUT:URLString parameters:param success:^(NSURLSessionTask *task, id responseObject) {
             [weakSelf.navigationController popViewControllerAnimated:YES];
         } failure:^(NSURLSessionTask *operation, NSError *error) {
-                 
+             NSLog(@"Error: %@", error);
         }];
     } else {
-        NSString *URLString = @"http://localhost:81/api/movies/";
+        NSString *URLString = @"http://localhost:30/api/movies/";
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         param[@"title"] = self.titleTxt.text;
         param[@"director"] = self.directorTxt.text;
@@ -61,7 +61,7 @@
         [manager POST:URLString parameters:param success:^(NSURLSessionTask *task, id responseObject) {
             [weakSelf.navigationController popViewControllerAnimated:YES];
         } failure:^(NSURLSessionTask *operation, NSError *error) {
-            
+            NSLog(@"Error: %@", error);
         }];
     }
 }

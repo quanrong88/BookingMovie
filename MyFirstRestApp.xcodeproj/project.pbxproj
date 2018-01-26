@@ -19,6 +19,11 @@
 		FCA417B11E45B30C0057991F /* MoviesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA417B01E45B30C0057991F /* MoviesVC.m */; };
 		FCA417B41E45B3240057991F /* BookingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA417B31E45B3240057991F /* BookingsVC.m */; };
 		FCA417B71E45B3390057991F /* UsersVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FCA417B61E45B3390057991F /* UsersVC.m */; };
+		FCB922721E470E92000D87EE /* MainTabbarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB922711E470E92000D87EE /* MainTabbarVC.m */; };
+		FCB922751E470EE6000D87EE /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB922741E470EE6000D87EE /* CacheManager.m */; };
+		FCB9227B1E474014000D87EE /* BookingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB9227A1E474014000D87EE /* BookingDetailVC.m */; };
+		FCB9227E1E476080000D87EE /* MovieSelectorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB9227D1E476080000D87EE /* MovieSelectorVC.m */; };
+		FCB922811E476E8A000D87EE /* UserSelectorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FCB922801E476E8A000D87EE /* UserSelectorVC.m */; };
 		FCCE1DBE1E45C3CB006F06F2 /* MovieDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FCCE1DBD1E45C3CB006F06F2 /* MovieDetailVC.m */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +63,16 @@
 		FCA417B31E45B3240057991F /* BookingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingsVC.m; sourceTree = "<group>"; };
 		FCA417B51E45B3390057991F /* UsersVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersVC.h; sourceTree = "<group>"; };
 		FCA417B61E45B3390057991F /* UsersVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersVC.m; sourceTree = "<group>"; };
+		FCB922701E470E92000D87EE /* MainTabbarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabbarVC.h; sourceTree = "<group>"; };
+		FCB922711E470E92000D87EE /* MainTabbarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabbarVC.m; sourceTree = "<group>"; };
+		FCB922731E470EE6000D87EE /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
+		FCB922741E470EE6000D87EE /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
+		FCB922791E474014000D87EE /* BookingDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookingDetailVC.h; sourceTree = "<group>"; };
+		FCB9227A1E474014000D87EE /* BookingDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookingDetailVC.m; sourceTree = "<group>"; };
+		FCB9227C1E476080000D87EE /* MovieSelectorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieSelectorVC.h; sourceTree = "<group>"; };
+		FCB9227D1E476080000D87EE /* MovieSelectorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieSelectorVC.m; sourceTree = "<group>"; };
+		FCB9227F1E476E8A000D87EE /* UserSelectorVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSelectorVC.h; sourceTree = "<group>"; };
+		FCB922801E476E8A000D87EE /* UserSelectorVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSelectorVC.m; sourceTree = "<group>"; };
 		FCCE1DBC1E45C3CB006F06F2 /* MovieDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailVC.h; sourceTree = "<group>"; };
 		FCCE1DBD1E45C3CB006F06F2 /* MovieDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +150,10 @@
 				FCA417951E45AF8A0057991F /* LaunchScreen.storyboard */,
 				FCA417981E45AF8A0057991F /* Info.plist */,
 				FCA417841E45AF8A0057991F /* Supporting Files */,
+				FCB922701E470E92000D87EE /* MainTabbarVC.h */,
+				FCB922711E470E92000D87EE /* MainTabbarVC.m */,
+				FCB922731E470EE6000D87EE /* CacheManager.h */,
+				FCB922741E470EE6000D87EE /* CacheManager.m */,
 			);
 			path = MyFirstRestApp;
 			sourceTree = "<group>";
@@ -170,8 +189,14 @@
 		FCA417AD1E45B2320057991F /* BookingVCs */ = {
 			isa = PBXGroup;
 			children = (
+				FCB922791E474014000D87EE /* BookingDetailVC.h */,
+				FCB9227A1E474014000D87EE /* BookingDetailVC.m */,
 				FCA417B21E45B3240057991F /* BookingsVC.h */,
 				FCA417B31E45B3240057991F /* BookingsVC.m */,
+				FCB9227C1E476080000D87EE /* MovieSelectorVC.h */,
+				FCB9227D1E476080000D87EE /* MovieSelectorVC.m */,
+				FCB9227F1E476E8A000D87EE /* UserSelectorVC.h */,
+				FCB922801E476E8A000D87EE /* UserSelectorVC.m */,
 			);
 			name = BookingVCs;
 			sourceTree = "<group>";
@@ -389,13 +414,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB922811E476E8A000D87EE /* UserSelectorVC.m in Sources */,
 				FCA417B41E45B3240057991F /* BookingsVC.m in Sources */,
 				FCA417B11E45B30C0057991F /* MoviesVC.m in Sources */,
 				FCA417891E45AF8A0057991F /* AppDelegate.m in Sources */,
+				FCB922721E470E92000D87EE /* MainTabbarVC.m in Sources */,
+				FCB922751E470EE6000D87EE /* CacheManager.m in Sources */,
 				FC9C57431E462FE1009A6B8B /* UserDetailVC.m in Sources */,
 				FCA417861E45AF8A0057991F /* main.m in Sources */,
+				FCB9227E1E476080000D87EE /* MovieSelectorVC.m in Sources */,
 				FCCE1DBE1E45C3CB006F06F2 /* MovieDetailVC.m in Sources */,
 				FCA417B71E45B3390057991F /* UsersVC.m in Sources */,
+				FCB9227B1E474014000D87EE /* BookingDetailVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

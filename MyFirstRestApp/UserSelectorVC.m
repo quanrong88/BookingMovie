@@ -1,22 +1,19 @@
 //
-//  BookingsVC.m
+//  UserSelectorVC.m
 //  MyFirstRestApp
 //
-//  Created by Ta Minh Quan on 04/02/2017.
+//  Created by Ta Minh Quan on 05/02/2017.
 //  Copyright © 2017 Ta Minh Quan. All rights reserved.
 //
 
-#import "BookingsVC.h"
-#import <AFNetworking.h>
-#import "BookingDetailVC.h"
+#import "UserSelectorVC.h"
+#import "CacheManager.h"
 
-@interface BookingsVC ()
-
-@property (strong, nonatomic) NSArray *bookings;
+@interface UserSelectorVC ()
 
 @end
 
-@implementation BookingsVC
+@implementation UserSelectorVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,11 +23,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self loadData];
+    __weak UserSelectorVC *weakSelf = self;
+    if (![CacheManager sharedInstance].users) {
+        [[CacheManager sharedInstance] loadUsersWithComplete:^(NSError *error) {
+            if (!error) {
+                [weakSelf.tableView reloadData];
+            }
+        }];
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,43 +39,49 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)loadData {
-    __weak BookingsVC *weakSelf = self;
-    NSString *URLString = @"http://localhost:30/api/bookings/";
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET:URLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        weakSelf.bookings = responseObject;
-        [weakSelf.tableView reloadData];
-        
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.bookings.count;
+    return [CacheManager sharedInstance].users.count;
+}
+
+- (IBAction)applyBtnClicked:(id)sender {
+    if (self.completeBlock) {
+        self.completeBlock(self.selectedUser);
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BookingCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = self.bookings[indexPath.row][@"pubDate"];
-    NSArray *listMovieIds = self.bookings[indexPath.row][@"movieIdsList"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%i movies", listMovieIds.count];
+    NSArray *users = [CacheManager sharedInstance].users;
+    NSDictionary *user = users[indexPath.row];
+    cell.textLabel.text = user[@"name"];
+    
+    if ([user isEqual:self.selectedUser]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
     
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *users = [CacheManager sharedInstance].users;
+    NSDictionary *user = users[indexPath.row];
+    self.selectedUser = user;
+    [tableView reloadData];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -109,19 +116,14 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"showBookingDetail"]) {
-        BookingDetailVC *desVC = segue.destinationViewController;
-        NSIndexPath *selectedIdx = [self.tableView indexPathForSelectedRow];
-        desVC.bookingId = self.bookings[selectedIdx.row][@"id"];
-    }
 }
-
+*/
 
 @end

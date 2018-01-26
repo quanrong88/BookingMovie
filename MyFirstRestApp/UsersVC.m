@@ -8,6 +8,7 @@
 
 #import "UsersVC.h"
 #import <AFNetworking.h>
+#import "UserDetailVC.h"
 
 @interface UsersVC ()
 
@@ -39,7 +40,7 @@
 
 - (void)loadData {
     __weak UsersVC *weakSelf = self;
-    NSString *URLString = @"http://localhost:81/api/user/";
+    NSString *URLString = @"http://localhost:30/api/user/";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:URLString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         weakSelf.users = responseObject;
@@ -110,6 +111,12 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"showUserDetail"]) {
+        UserDetailVC *desVC = segue.destinationViewController;
+        NSIndexPath *selectedIdx = [self.tableView indexPathForSelectedRow];
+        desVC.userDic = self.users[selectedIdx.row];
+    }
+    
 }
 
 

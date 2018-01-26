@@ -7,6 +7,7 @@
 //
 
 #import "UserDetailVC.h"
+#import <AFNetworking.h>
 
 @interface UserDetailVC ()
 @property (weak, nonatomic) IBOutlet UITextField *nameTxt;
@@ -23,6 +24,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (self.userDic) {
+        self.nameTxt.text = self.userDic[@"name"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,10 +35,34 @@
 }
 
 - (IBAction)saveBtnClicked:(id)sender {
-    
+    __weak UserDetailVC *weakSelf = self;
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    if (self.userDic) {
+        NSString *URLString = [NSString stringWithFormat:@"%@%@", @"http://localhost:30/api/user/" , self.userDic[@"id"]];
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"name"] = self.nameTxt.text;
+        [manager PUT:URLString parameters:param success:^(NSURLSessionTask *task, id responseObject) {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    } else {
+        NSString *URLString = @"http://localhost:30/api/user/";
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"name"] = self.nameTxt.text;
+        [manager POST:URLString parameters:param success:^(NSURLSessionTask *task, id responseObject) {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+    }
 }
 
 - (IBAction)showBookingsBtnClicked:(id)sender {
+    if (!self.userDic) {
+        return;
+    }
+    
     
 }
 
